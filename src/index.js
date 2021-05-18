@@ -4,8 +4,13 @@
  **/
 
 import confetti from 'canvas-confetti';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+import * as bootstrap from 'bootstrap';
+
 
 confetti.create(document.getElementById('canvas'), {
   resize: true,
   useWorker: true,
-})({ particleCount: 200, spread: 200 });
+})({ particleCount: 100, spread: 110 });

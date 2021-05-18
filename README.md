@@ -1,24 +1,23 @@
-# New Project
+# Codementor Link Shortener Challenge
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+Building a Link Shortener using Bitly API
 
-## Available Scripts
+## Requirements
 
-### npm start
+The user will input a valid URL and click a "shorten" button. The shortened URL will then be displayed.
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+Your UI should include the following elements:
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+Text input for the user's URL
+"Shorten" button to trigger the link shortening
+Display area to return the shortened URL to the user
 
-### npm run build
+### For extra challenge:
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+Make it easier for the user to copy the shortened URL by adding a "copy" button for one-click copying.
+Try to allow the user to automatically copy the shortened URL by using libraries like SimpleCopy or ClipboardJS.
 
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/main/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.json` config file.
+## Suggested Implementation
 
-### Q: What about Eject?
-
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+This project can be implemented as a webpage using any front end stack (e.g. JavaScript, React, Angular, Vue.js).
+You can use free link shortenings services such as bit.ly to process the URL.

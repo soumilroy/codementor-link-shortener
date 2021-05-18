@@ -7,6 +7,9 @@
     "lint": "prettier --check \"src/**/*.js\""
   },
   "dependencies": {
+    "@popperjs/core": "^2.9.2",
+    "@snowpack/plugin-dotenv": "^2.1.0",
+    "bootstrap": "^5.0.1",
     "canvas-confetti": "^1.2.0"
   },
   "devDependencies": {
