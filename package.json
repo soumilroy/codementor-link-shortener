@@ -8,9 +8,10 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
-    "@snowpack/plugin-dotenv": "^2.1.0",
     "bootstrap": "^5.0.1",
-    "canvas-confetti": "^1.2.0"
+    "canvas-confetti": "^1.2.0",
+    "clipboard": "^2.0.8",
+    "is-url-superb": "^6.0.0"
   },
   "devDependencies": {
     "prettier": "^2.2.1",

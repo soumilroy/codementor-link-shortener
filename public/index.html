@@ -11,13 +11,90 @@
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <title>Snowpack App</title>
   </head>
-  <body class="container">
-    <p>Bitly key: 6ba678af9807db37d7577118c6733e72d9459d3a</p>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti dolorem
-      incidunt magnam natus, aliquid saepe dolorum quisquam autem eum ratione
-      laboriosam sit, amet excepturi velit, quibusdam expedita blanditiis
-      fugiat? Quibusdam?
-    </p>
+  <body class="bg-light">
+    <div class="container">
+      <div class="row p-4">
+        <div class="col col-md-8 offset-md-2">
+          <div id="shortLinkRow" class="bg-white p-4 shadow-lg rounded-3">
+            <h1 class="fs-2">
+              Link Shortener
+              <small class="text-muted fs-4"> by Soumil Roy </small>
+            </h1>
+            <p class="lead">A codementor challenge using Bit.ly API</p>
+
+            <div class="row mt-4">
+              <div class="col">
+                <form
+                  id="url-form"
+                  class="form-floating needs-validation"
+                  novalidate
+                >
+                  <input
+                    id="url"
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="name@example.com"
+                    name="url"
+                    required
+                  />
+                  <label for="floatingInput">Enter a valid URL</label>
+                  <div class="invalid-feedback">Please provide a valid url</div>
+                  <div class="d-flex justify-content-between">
+                    <button
+                      id="submitBtn"
+                      class="btn btn-primary p-3 mt-4"
+                      type="submit"
+                    >
+                      Shorten my URL
+                      <span
+                        class="
+                          ml-1
+                          spinner spinner-border spinner-border-sm
+                          d-none
+                        "
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                    </button>
+
+                    <button
+                      id="resetResults"
+                      class="btn btn-outline-danger p-3 mt-4"
+                      type="reset"
+                      title="Shorten URL"
+                    >
+                      Reset
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-center p-4">
+            <div
+              id="successToast"
+              class="toast align-items-center text-white bg-success border-0"
+              role="alert"
+              aria-live="assertive"
+              aria-atomic="true"
+            >
+              <div class="d-flex">
+                <div class="toast-body">URL Copied!</div>
+                <button
+                  type="button"
+                  class="btn-close btn-close-white me-2 m-auto"
+                  data-bs-dismiss="toast"
+                  aria-label="Close"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/dist/index.js"></script>
   </body>
 </html>
