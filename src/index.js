@@ -30,6 +30,7 @@ urlForm.addEventListener('submit', e => {
   }
   
   spinner.classList.remove('d-none');
+  spinner.setAttribute('disabled', true)
 
   fetch(bitlyURL, {
     method: 'POST',
@@ -45,6 +46,7 @@ urlForm.addEventListener('submit', e => {
   .then(data => {
     const { link } = data
     spinner.classList.add('d-none');
+    spinner.removeAttribute('disabled')
     populateShortLink(link);
   })
   .catch(e => console.log(e))
@@ -86,30 +88,7 @@ function populateShortLink(shortUrl) {
             data-bs-placement="top" 
             title="Copy to Clipboard"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="feather feather-clipboard"
-            >
-              <path
-                d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-              ></path>
-              <rect
-                x="8"
-                y="2"
-                width="8"
-                height="4"
-                rx="1"
-                ry="1"
-              ></rect>
-            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
           </button>
           <a
             href="${shortUrl}"
@@ -145,7 +124,7 @@ function fireConfetti() {
   confetti.create(document.getElementById('canvas'), {
     resize: true,
     useWorker: true,
-  })({ particleCount: 200, spread: 200 });
+  })({ particleCount: 100, spread: 100 });
 }
 
 function initializeResultComponents() {
