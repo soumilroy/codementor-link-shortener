@@ -1,36 +1,34 @@
-/**
- * This file is just a silly example to show everything working in the browser.
- * When you're ready to start on your site, clear the file. Happy hacking!
- **/
-
-import confetti from 'canvas-confetti';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Tooltip, Toast } from 'bootstrap';
+import { Tooltip, Toast, Modal } from 'bootstrap';
 import isUrl from 'is-url-superb'
 import ClipboardJS from 'clipboard'
+import confetti from 'canvas-confetti';
 
 const shortLinkRow = document.querySelector('#shortLinkRow');
 const urlForm = document.querySelector('#url-form');
 const urlField = document.querySelector('#url');
 const spinner = document.querySelector('.spinner');
 
-const accessToken = `6ba678af9807db37d7577118c6733e72d9459d3a`;
-const bitlyURL = `https://api-ssl.bitly.com/v4/shorten`;
+const bitlyURL = import.meta.env.SNOWPACK_PUBLIC_BITLY_API_SHORTEN_URL;
+const accessToken = import.meta.env.SNOWPACK_PUBLIC_BITLY_API_TOKEN;
 
-document.querySelector('#resetResults').addEventListener('click', resetEverything)
-
-urlField.addEventListener('keyup', removeErrorField)
+let envModal = new Modal(document.getElementById('envModal'), {})
 
 urlForm.addEventListener('submit', e => {
   e.preventDefault();
   
   removeResultSet()
+
+  if (!checkEnvVariables()) {
+    envModal.show();
+    return;
+  };
   
   if (!isUrl(urlField.value)) {
     urlField.classList.add('is-invalid');
     return;
   }
-
+  
   spinner.classList.remove('d-none');
 
   fetch(bitlyURL, {
@@ -49,88 +47,93 @@ urlForm.addEventListener('submit', e => {
     spinner.classList.add('d-none');
     populateShortLink(link);
   })
-  .catch(e => console.log(e.message))
+  .catch(e => console.log(e))
 });
 
+urlField.addEventListener('keyup', removeErrorField)
+
+const checkEnvVariables = () => {
+  return bitlyURL && accessToken
+}
 
 function populateShortLink(shortUrl) {
   const result = `
-      <div class="col">
-        <div
-          style="background: #e7f3ed"
-          class="rounded-3 mt-3 py-4 px-4"
-        >
-          <h2 class="text-success fs-4 mb-4 text-center">
-            Your URL has been generated
-          </h2>
-          <div class="input-group">
-            <input
-              id="shortUrl"
-              type="text"
-              class="form-control bg-white p-3"
-              placeholder="https://google.com"
-              value="${shortUrl}"
-              aria-label="Recipient's username"
-              aria-describedby="button-copy"
-              readonly
-            />
-            <button
-              class="btn btn-primary d-flex align-items-center"
-              type="button"
-              id="button-copy"
-              data-clipboard-target="#shortUrl"
-              data-bs-toggle="tooltip" 
-              data-bs-placement="top" 
-              title="Copy to Clipboard"
+    <div class="col">
+      <div
+        style="background: #e7f3ed"
+        class="rounded-3 mt-3 py-4 px-4"
+      >
+        <h2 class="text-success fs-4 mb-4 text-center">
+          Your URL has been generated
+        </h2>
+        <div class="input-group">
+          <input
+            id="shortUrl"
+            type="text"
+            class="form-control bg-white p-3"
+            placeholder="https://google.com"
+            value="${shortUrl}"
+            aria-label="Recipient's username"
+            aria-describedby="button-copy"
+            readonly
+          />
+          <button
+            class="btn btn-primary d-flex align-items-center"
+            type="button"
+            id="button-copy"
+            data-clipboard-target="#shortUrl"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="top" 
+            title="Copy to Clipboard"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-clipboard"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-clipboard"
-              >
-                <path
-                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-                ></path>
-                <rect
-                  x="8"
-                  y="2"
-                  width="8"
-                  height="4"
-                  rx="1"
-                  ry="1"
-                ></rect>
-              </svg>
-            </button>
-            <a
-              href="${shortUrl}"
-              target="_blank"
-              class="btn btn-warning d-flex align-items-center"
-              type="button"
-              id="button-copy"
-              data-bs-toggle="tooltip" 
-              data-bs-placement="top" 
-              title="Open link in new Tab"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-            </a>
-          </div>
+              <path
+                d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+              ></path>
+              <rect
+                x="8"
+                y="2"
+                width="8"
+                height="4"
+                rx="1"
+                ry="1"
+              ></rect>
+            </svg>
+          </button>
+          <a
+            href="${shortUrl}"
+            target="_blank"
+            class="btn btn-warning d-flex align-items-center"
+            type="button"
+            id="button-copy"
+            data-bs-toggle="tooltip" 
+            data-bs-placement="top" 
+            title="Open link in new Tab"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          </a>
         </div>
       </div>
-    `;
+    </div>
+  `;
 
-    let resultRow = document.createElement('div');
-    resultRow.classList.add('results', 'row', 'mt-3');
-    resultRow.innerHTML = result;
-    shortLinkRow.insertAdjacentElement('beforeend', resultRow);
-    fireConfetti()
-    initializeResultComponents()
+  let shortUrlRow = document.createElement('div');
+  shortUrlRow.classList.add('results', 'row', 'mt-3');
+  shortUrlRow.innerHTML = result;
+  shortLinkRow.insertAdjacentElement('beforeend', shortUrlRow);
+  fireConfetti()
+  initializeResultComponents()
 }
 
 function removeErrorField() {
@@ -142,7 +145,7 @@ function fireConfetti() {
   confetti.create(document.getElementById('canvas'), {
     resize: true,
     useWorker: true,
-  })({ particleCount: 100, spread: 110 });
+  })({ particleCount: 200, spread: 200 });
 }
 
 function initializeResultComponents() {
@@ -171,3 +174,5 @@ function resetEverything() {
   removeErrorField();
   removeResultSet()
 }
+
+document.querySelector('#resetResults').addEventListener('click', resetEverything)

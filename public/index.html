@@ -18,7 +18,12 @@
           <div id="shortLinkRow" class="bg-white p-4 shadow-lg rounded-3">
             <h1 class="fs-2">
               Link Shortener
-              <small class="text-muted fs-4"> by Soumil Roy </small>
+              <small class="text-muted fs-5">
+                by
+                <a href="https://www.linkedin.com/in/soumilroy/" target="_blank"
+                  >Soumil Roy</a
+                >
+              </small>
             </h1>
             <p class="lead">A codementor challenge using Bit.ly API</p>
 
@@ -89,6 +94,52 @@
                   aria-label="Close"
                 ></button>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Check Env -->
+      <div
+        class="modal fade"
+        id="envModal"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="envModal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Error</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p>The environment variables is not set.</p>
+              <p>
+                Please check your <code>.env</code> file or refer to
+                <a
+                  href="https://github.com/soumilroy/codementor-link-shortener"
+                  target="_blank"
+                  >README.md</a
+                >
+                file
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>

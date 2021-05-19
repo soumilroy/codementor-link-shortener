@@ -2,22 +2,20 @@
 
 Building a Link Shortener using Bitly API
 
-## Requirements
+## How to run this project
 
-The user will input a valid URL and click a "shorten" button. The shortened URL will then be displayed.
+On your terminal <br>
 
-Your UI should include the following elements:
+1. `git clone https://github.com/soumilroy/codementor-link-shortener.git`
 
-Text input for the user's URL
-"Shorten" button to trigger the link shortening
-Display area to return the shortened URL to the user
+2. `cd codementor-link-shortener/`
 
-### For extra challenge:
+3. `yarn install`
 
-Make it easier for the user to copy the shortened URL by adding a "copy" button for one-click copying.
-Try to allow the user to automatically copy the shortened URL by using libraries like SimpleCopy or ClipboardJS.
+4. Rename **.env-example** file to **.env** and update environment variables
 
-## Suggested Implementation
+5. `yarn start`
 
-This project can be implemented as a webpage using any front end stack (e.g. JavaScript, React, Angular, Vue.js).
-You can use free link shortenings services such as bit.ly to process the URL.
+## Build Project
+
+`yarn build`
