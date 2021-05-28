@@ -1,6 +1,7 @@
 # Codementor Link Shortener Challenge
 
-Building a Link Shortener using Bitly API
+Building a Link Shortener using Bitly API. 
+[Click here for demo](https://codementor-link-shortener.vercel.app/ "My version of App written in Vanilla JS")
 
 ## How to run this project
 
