@@ -20,3 +20,7 @@ On your terminal <br>
 ## Build Project
 
 `yarn build`
+
+## Preview
+
+![link-shortener](https://user-images.githubusercontent.com/42084105/229592904-e9840023-9d26-4d3c-bf31-9f1d3e7c064d.jpg)
